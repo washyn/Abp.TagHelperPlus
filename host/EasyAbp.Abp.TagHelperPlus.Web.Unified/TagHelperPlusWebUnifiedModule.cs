@@ -10,6 +10,10 @@ using Microsoft.OpenApi.Models;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Web;
+using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
+using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
@@ -74,7 +78,8 @@ namespace EasyAbp.Abp.TagHelperPlus
         typeof(AbpTenantManagementApplicationModule),
         typeof(AbpTenantManagementHttpApiModule),
         typeof(AbpTenantManagementEntityFrameworkCoreModule),
-        typeof(AbpAspNetCoreMvcUiLeptonXLiteThemeModule),
+        // typeof(AbpAspNetCoreMvcUiLeptonXLiteThemeModule),
+        typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpSwashbuckleModule)
         )]
@@ -108,8 +113,10 @@ namespace EasyAbp.Abp.TagHelperPlus
 
             Configure<AbpLocalizationOptions>(options =>
             {
+                options.Languages.Add(new LanguageInfo("ar", "ar", "العربية"));
                 options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
+                options.Languages.Add(new LanguageInfo("es", "es", "Español"));
                 options.Languages.Add(new LanguageInfo("fr", "fr", "Français"));
                 options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português (Brasil)"));
                 options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
@@ -137,6 +144,20 @@ namespace EasyAbp.Abp.TagHelperPlus
             // {
             //     options.RemoteServices.Add("TestModule", new RemoteServiceConfiguration("https://myapp-123.com"));
             // });
+            
+            // can be remove this, not using
+            Configure<AbpBundlingOptions>(options =>
+            {
+                options.StyleBundles.Configure(
+                    BasicThemeBundles.Styles.Global,
+                    bundle =>
+                    {
+                        // add condicionaly if is rtl
+                        // bundle.AddFiles("/libs/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.css");
+                        // bundle.AddFiles("/libs/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.rtl.css");
+                    }
+                );
+            });
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)

@@ -256,3 +256,7 @@ host/EasyAbp.Abp.TagHelperPlus.IdentityServer/Logs/logs.txt
 host/EasyAbp.Abp.TagHelperPlus.HttpApi.Host/Logs/logs.txt
 host/EasyAbp.Abp.TagHelperPlus.Web.Host/Logs/logs.txt
 host/EasyAbp.Abp.TagHelperPlus.Web.Unified/Logs/logs.txt
+
+
+# Use abp install-libs to restore.
+**/wwwroot/libs/*
