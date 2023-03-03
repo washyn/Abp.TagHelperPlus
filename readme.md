@@ -34,12 +34,10 @@ Improve the abp-select to support paged items and search.
 ![EditBook](/docs/images/EasySelector/EditBook.png)
 
 <!-- ## Road map
-
 - [x] Easy Selector
 - [x] Support abp-select
 - [ ] Items sorter
 - [ ] Rich text editor
-
  -->
 
 
