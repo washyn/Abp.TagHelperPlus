@@ -34,9 +34,10 @@ namespace EasyAbp.Abp.TagHelperPlus.TagHelpers
             HtmlEncoder encoder,
             IAbpTagHelperLocalizer tagHelperLocalizer,
             IStringLocalizerFactory stringLocalizerFactory,
+            IAbpEnumLocalizer abpEnumLocalizer,
             IJsonSerializer jsonSerializer,
             IOptions<AbpRemoteServiceOptions> remoteServiceOptions) : base(generator,
-            encoder, tagHelperLocalizer, stringLocalizerFactory)
+            encoder, tagHelperLocalizer, stringLocalizerFactory, abpEnumLocalizer)
         {
             _jsonSerializer = jsonSerializer;
             _remoteServiceOptions = remoteServiceOptions.Value;
@@ -91,7 +92,7 @@ namespace EasyAbp.Abp.TagHelperPlus.TagHelpers
                 return base.SurroundInnerHtmlAndGet(context, output, innerHtml);
             }
             
-            return "<div class=\"form-group\">" +
+            return "<div class=\"mb-3 form-group\">" +
                    Environment.NewLine +
                    GetSelect2ConfigurationCode(context, easySelectorAttribute) +
                    Environment.NewLine +
@@ -113,8 +114,7 @@ namespace EasyAbp.Abp.TagHelperPlus.TagHelpers
         // this is custom style for default select2, this improve is for make aparence as boostrap4
         protected virtual string GetStyleCode(TagHelperContext context, EasySelectorAttribute easySelectorAttribute)
         {
-            // return $"<style>.select2-selection__rendered{{line-height:35px !important;padding-left:0.75rem !important;}}.select2-container{{ z-index:1060 }} .select2-container .select2-selection--single{{height:38px !important;}}.select2-selection__arrow{{height:38px !important;}} .selection-subtext {{ padding-left: 10px; color: #808080 !important; font-size: smaller; }}</style>";
-            return string.Empty;
+            return $"<style>.select2-selection__rendered{{line-height:48px !important;padding-left:1.25rem !important;}}.select2-selection__clear{{right:10px}}.select2-container{{ z-index:1049 !important }} .select2-container .select2-selection--single{{height:48px !important;}}.select2-selection__arrow{{height:48px !important;right:10px !important}} .selection-subtext {{ padding-left: 10px; color: #808080 !important; font-size: smaller; }}</style>";
         }
 
         private string GetBoostrap5ThemeOption()
